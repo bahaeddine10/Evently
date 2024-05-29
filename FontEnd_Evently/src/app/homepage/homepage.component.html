@@ -1,0 +1,170 @@
+<nav class="navbar navbar-expand-lg navbar-light " >
+    <div class="container-fluid">
+      
+      <a class="navbar-brand" href="#">Evently</a>
+
+  
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+ 
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item active"><a class="nav-link active" href="#">Profile</a></li>
+         
+         
+
+        </ul>
+        
+       
+        <form id="x" class="d-flex">
+          <div class="search-box">
+            <a href="#" class="text-black text-decoration-none"><i class="fa-solid fa-search"></i></a> 
+             <input type="text" placeholder="Search" >
+           </div>
+        </form>
+
+        
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              
+              <img src="../../assets/proxy-image.jpg" alt="User" width="30" height="30" class="rounded-circle online">
+            
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Logout</a></li>
+            </ul>
+          </div>
+      </div>
+      <div>
+        <a style="color: black;" routerLink="/login">Logout</a>
+    </div>
+    </div>
+  </nav>
+<div class="container ">
+ 
+
+<div class="left-sidebar">
+  <div class="imp-links ">
+    <a routerLink="/myevents" class="text-decoration-none"><i class="fa-solid fa-newspaper"></i>My Events</a>
+    <a routerLink="/events" class="text-decoration-none"><i class="fa-solid fa-people-group"></i>Events</a>
+  </div>
+
+
+</div>
+ 
+<div class="main-content">
+
+  <div class="create-post-container bg-opacity-100 bg-body-secondary">
+    <div class="user-profile">
+      <img src="../../assets/proxy-image.jpg">
+      <div *ngIf="firstname">
+        <p>Welcome, {{ firstname }}</p>
+        <small>Public <i class="fa fa-caret-down"></i></small>
+      </div>
+        
+    </div>
+    <div class="post-input-container">
+      <button class="btn btn-outline-info" sty type="button" data-toggle="modal"  data-target="#exampleModal"    style="margin-top: -10%;">
+      <textarea  rows="3" placeholder="What's ur mind"    id="text"></textarea>
+     
+    </button>
+  
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Posting</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body bg-opacity-50 bg-body-secondary">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <div class="post-form">
+              <h2 class="text-center text-black">What's ur mind ?</h2>
+              <form  method="post" >
+                <div class="mb-3">
+                  <textarea class="form-control bg-white" placeholder="What's on your mind?"   #val rows="6"> </textarea>
+                </div>
+               
+                <div class="d-flex justify-content-around align-items-center">
+                <button type="submit" (click)="createPosts(val.value)" class="btn btn-success" routerLinkActive="/homepage"   data-dismiss="modal">Publish</button>
+                <button type="reset" class="btn btn-danger" data-dismiss="modal">Reset</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </div>
+    
+  </div>
+<div class="post-container bg-opacity-75 bg-body-secondary" *ngFor="let item of posts">
+ <div class="d-flex justify-content-between">
+  <div class="user-profile">
+    <img src="../../assets/proxy-image.jpg">
+    <div>
+      <p>user</p>
+      <span>{{ item.Date_Publish }}</span>
+    </div>
+  </div>
+  <div class=" d-flex gap-2">
+    <button type="button" class="btn btn-outline-warning text-black " (click)="getid(item.id_Post)" data-toggle="modal" data-target="#exampleModal2">Modify</button>
+       <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Updating post</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-opacity-50 bg-body-secondary">
+              <div class="row">
+                <div class="col-md-8 offset-md-2">
+                  <div class="post-form">
+                    <form  method="post" >
+                      <div class="mb-3">
+                        <textarea class="form-control bg-white" placeholder="What's on your mind?"   #val1 rows="6"> </textarea>
+                      </div>
+                     
+                    <div  class="d-flex justify-content-around align-items-center">
+                      <button type="submit" (click)="UpdatePosts(val1.value )" class="btn btn-success" routerLinkActive="/Homepage"   data-dismiss="modal">Update</button>
+                      <button type="reset" class="btn btn-danger" data-bs-dismiss="modal">Reset</button>
+                    </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    <button type="button" class="btn btn-outline-danger text-black " (click)="deletePost(item.id_Post)">Delete</button>
+
+  </div>
+</div>
+  <p class="post-text text-black">{{  item.textPost  }}</p>
+
+
+  <div class="post-row">
+      <div class="activity-icon">
+        <button class="btn  btn-success" type="button"  ><i class="fa-solid fa-thumbs-up"></i></button>
+        <button class="btn btn-danger"  type="button"><i class="fa-solid fa-thumbs-down "></i></button>
+      </div>
+    
+  </div>
+</div>
+
+</div>
+
+</div>

@@ -1,0 +1,154 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 20;
+    background: #007bff;
+    color: #fff;
+    width: 250px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+
+.sidebar-heading {
+    padding: 20px 15px;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.sidebar a {
+    padding: 15px;
+    display: block;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #0056b3;
+    text-decoration: none;
+}
+
+.sidebar a.active {
+    background-color: #004da8;
+}
+
+.content {
+    margin-left: 250px;
+    margin-top: 57px; /* Adjusted to match the height of the navbar */
+    padding: 20px;
+}
+
+.nav-user-icon img {
+    width: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.nav-user-icon {
+    margin-left: 30px;
+}
+
+.search-box {
+    background: #efefef;
+    width: 350px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.search-box i {
+    width: 18px;
+}
+
+.search-box input {
+    width: 100px;
+    background: transparent;
+    padding: 10px;
+    outline: none;
+    border: 0;
+}
+
+.nav-left,
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-left ul li {
+    list-style: none;
+    display: inline;
+}
+
+.nav-left ul li i {
+    width: 28px;
+    margin: 0 15px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #80BCBD;
+    padding: 5px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 100; /* Decreased z-index to ensure it's below the sidebar */
+}
+
+/* Card enhancements */
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Add a slight lift on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+    padding: 20px;
+    background-color: #fff; /* Change background color to white */
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333; /* Change title color */
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Add text shadow */
+}
+
+.card-text {
+    color: #444; /* Change text color to slightly darker */
+    margin-bottom: 15px;
+    line-height: 1.6; /* Improve readability by adjusting line height */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Add text shadow */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+/* Divider Line */
+.divider {
+    border: none; /* Remove default border */
+    height: 2px; /* Set height of the line */
+    margin: 20px 0; /* Add margin for spacing */
+    background: linear-gradient(to right, #0056b3, #007bff, #007bff);
+}

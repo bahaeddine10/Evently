@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+</head>
+<body >
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Evently</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item active"><a class="nav-link active" href="#">Profile</a></li>
+                    
+                </ul>
+                <form id="x" class="d-flex" (ngSubmit)="onSearch()" >
+                    <div class="search-box">
+                        <a href="#" class="text-black text-decoration-none"><i class="fa-solid fa-search"></i></a> 
+                        <input type="text" placeholder="Search" [(ngModel)]="searchTerm" name="searchTerm">
+                    </div>
+                </form>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-expanded="false">
+                        <img src="../../assets/proxy-image.jpg" alt="User" width="30" height="30" class="rounded-circle online">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+      
+    
+    
+    
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <h3 class="sidebar-heading">Menu</h3>
+                    <ul class="list-unstyled components">
+                        <li>
+                            <a href="#"routerLink="/Homepage">Home</a>
+                        </li>
+                        <li>
+                            <a routerLink="/myevents">My Events</a>
+                        </li>
+                        <li>
+                            <a href="#" class="active" onclick="setActive(this)">Events</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <h2 class="mt-4" style="font-family: Times New Roman;">Events Available:</h2>
+                <div class="col-md-9"></div>    
+                    <div class="row" *ngIf="!noResults && events.length > 0">
+                        <div class="col-md-4" *ngFor="let event of events">
+                            <div class="card mb-4">
+                                <div class="card-body" style="background-color: #87dfe9; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+                                    <h5 class="card-title">Card title: {{ event.name }}</h5>
+                                    <p class="card-text">Description: {{ event.description }}</p>
+                                    <h5 class="card-title">Capacity: {{ event.capacity }}</h5>
+                                    <p class="card-text">Event Details: {{ event.details }}</p>
+                                    <p class="card-text">Date: {{ event.date_e }}</p> <!-- Added date field -->
+                                    <button class="btn btn-primary">Join Event</button> <!-- Add Join Event button -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="noResults">
+                        <p>No results found.</p>
+                    </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <button type="button" class="btn btn-success fixed-button" data-toggle="modal" data-target="#staticBackdrop">
+        Create Event!
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form (submit)="onSubmit()">
+                        <div class="mb-3">
+                            <label for="eventName" class="form-label">Event Name</label>
+                            <input  [(ngModel)]="event.name" type="text" class="form-control" id="eventName" name="eventName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="eventDescription" class="form-label">Event Description</label>
+                            <input  [(ngModel)]="event.description" type="text" class="form-control" id="eventDescription" name="eventDescription">
+                        </div>
+                        <div class="mb-3">
+                            <label for="capacity" class="form-label">Capacity</label>
+                            <input [(ngModel)]="event.capacity" type="number" class="form-control" id="capacity" name="capacity">
+                        </div>
+                        <div class="mb-3">
+                            <label for="eventDetails" class="form-label">Event Details</label>
+                            <textarea [(ngModel)]="event.details" class="form-control" id="eventDetails" name="eventDetails" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="eventDate" class="form-label">Event Date</label>
+                            <input [(ngModel)]="event.date_e" type="date" class="form-control" id="eventDate" name="eventDate">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

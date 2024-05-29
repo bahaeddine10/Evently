@@ -1,0 +1,40 @@
+.card {
+    position: absolute;
+    font-weight: bold;
+    top: 50px;
+    margin: auto;
+    width: 50%;
+    border: 0px solid;
+    border-radius: 25px;
+    padding: 10px;
+
+}
+
+.container{
+
+    background: linear-gradient(90deg , #96d5a7 25%,#67c9bb ,#37bdd0 );
+    width: 100vw;
+    padding-left: 50%;
+    padding-right: 50%;
+    display: flex;
+    width: 250px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+#change{
+    color: black;
+}
+#change:hover{
+    color: brown;
+    cursor: pointer;
+}
+
+@media screen and (min-width:768px)  {
+    .card{
+        top:150px;
+        width: auto;
+    }
+
+}
